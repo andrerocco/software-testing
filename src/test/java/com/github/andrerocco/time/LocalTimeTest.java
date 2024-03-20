@@ -123,19 +123,20 @@ public class LocalTimeTest {
     }
 
     @Test
-    public void shouldCreateLocalTimeFromNoon() {
+    public void shouldReturnTrueWhenTimeIsBeforeAnotherTime() {
         // Fixture setup
+        LocalTime time = LocalTime.of(12, 30, 45);
+        LocalTime anotherTime = LocalTime.of(13, 30, 45);
 
         // Exercise SUT
-        LocalTime noon = LocalTime.NOON;
+        boolean isBefore = time.isBefore(anotherTime);
 
         // Result verification
-        assertEquals(12, noon.getHour());
-        assertEquals(0, noon.getMinute());
-        assertEquals(0, noon.getSecond());
+        assertEquals(true, isBefore);
 
         // Fixture teardown
     }
+
     
     // exceptions
     @Test
