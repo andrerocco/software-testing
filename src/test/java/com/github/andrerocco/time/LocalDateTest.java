@@ -3,6 +3,7 @@ package com.github.andrerocco.time;
 import org.junit.jupiter.api.Test;
 
 import java.time.DateTimeException;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,6 +24,20 @@ public class LocalDateTest {
         assertEquals(year, date.getYear());
         assertEquals(month, date.getMonthValue());
         assertEquals(day, date.getDayOfMonth());
+
+        // Fixture teardown
+    }
+
+    @Test
+    public void shouldNotCreateInvalidLocalDate() {
+        // Fixture setup
+        
+        // Exercise SUT
+        assertThrows(DateTimeException.class, () -> {
+            LocalDate.of(2024, 2, 30);
+        });
+
+        // Result verification
 
         // Fixture teardown
     }
@@ -77,16 +92,29 @@ public class LocalDateTest {
     }
 
     @Test
-    public void shouldGetWeekDay() {
+    public void shouldNotCreateInvalidDateFromParse() {
         // Fixture setup
-
+        
         // Exercise SUT
-        LocalDate pastDate = LocalDate.of(2000, 1, 1); // January 1, 2000 = Saturday
-        LocalDate futureDate = LocalDate.of(3000, 12, 7); // December 7, 3000 = Sunday
+        assertThrows(DateTimeException.class, () -> {
+            LocalDate.parse("2024-02-30");
+        });
 
         // Result verification
-        assertEquals(6, pastDate.getDayOfWeek().getValue()); // Saturday
-        assertEquals(7, futureDate.getDayOfWeek().getValue()); // Sunday
+        
+        // Fixture teardown
+    }
+
+    @Test
+    public void shouldGetWeekDay() {
+        // Fixture setup
+        LocalDate date = LocalDate.of(2000, 1, 1); // January 1, 2000 = Saturday
+
+        // Exercise SUT
+        DayOfWeek weekday = date.getDayOfWeek(); // Saturday
+
+        // Result verification
+        assertEquals(6, weekday.getValue());
 
         // Fixture teardown
     }
@@ -172,34 +200,6 @@ public class LocalDateTest {
         // Result verification
         assertEquals(5, daysBetween);
 
-        // Fixture teardown
-    }
-
-    @Test
-    public void shouldNotCreateInvalidDate() {
-        // Fixture setup
-        
-        // Exercise SUT
-        assertThrows(DateTimeException.class, () -> {
-            LocalDate.of(2024, 2, 30);
-        });
-
-        // Result verification
-
-        // Fixture teardown
-    }
-
-    @Test
-    public void shouldNotCreateInvalidDateFromParse() {
-        // Fixture setup
-        
-        // Exercise SUT
-        assertThrows(DateTimeException.class, () -> {
-            LocalDate.parse("2024-02-30");
-        });
-
-        // Result verification
-        
         // Fixture teardown
     }
 }
