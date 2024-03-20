@@ -73,9 +73,9 @@ public class LocalDateTimeTest {
     @Test
     public void shouldAddDaysToDateTime() {
         // Fixture setup
+        LocalDateTime dateTime = LocalDateTime.of(2024, 3, 19, 12, 30, 45);
 
         // Exercise SUT
-        LocalDateTime dateTime = LocalDateTime.of(2024, 3, 19, 12, 30, 45);
         LocalDateTime newDateTime = dateTime.plusDays(5);
 
         // Result verification
@@ -92,9 +92,9 @@ public class LocalDateTimeTest {
     @Test
     public void shouldSubtractDaysFromDateTime() {
         // Fixture setup
+        LocalDateTime dateTime = LocalDateTime.of(2024, 3, 19, 12, 30, 45);
 
         // Exercise SUT
-        LocalDateTime dateTime = LocalDateTime.of(2024, 3, 19, 12, 30, 45);
         LocalDateTime newDateTime = dateTime.minusDays(5);
 
         // Result verification
@@ -111,9 +111,9 @@ public class LocalDateTimeTest {
     @Test
     public void shouldSubtractDaysFromDateTimeWithNegativeResult() {
         // Fixture setup
+        LocalDateTime dateTime = LocalDateTime.of(2024, 3, 19, 12, 30, 45);
 
         // Exercise SUT
-        LocalDateTime dateTime = LocalDateTime.of(2024, 3, 19, 12, 30, 45);
         LocalDateTime newDateTime = dateTime.minusDays(19);
 
         // Result verification
