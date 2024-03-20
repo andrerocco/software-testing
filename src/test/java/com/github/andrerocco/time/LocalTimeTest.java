@@ -44,6 +44,38 @@ public class LocalTimeTest {
     }
 
     @Test
+    public void shouldNotCreateLocalTimeFromParseWithInvalidFormat() {
+        // Fixture setup
+        String time = "12-30-45";
+
+        // Exercise SUT
+        assertThrows(
+                DateTimeException.class,
+                () -> LocalTime.parse(time)
+        );
+
+        // Result verification
+
+        // Fixture teardown
+    }
+
+    @Test
+    public void shouldNotCreateLocalTimeFromParseWithInvalidHoursValue() {
+        // Fixture setup
+        String time = "24:00:00";
+
+        // Exercise SUT
+        assertThrows(
+                DateTimeException.class,
+                () -> LocalTime.parse(time)
+        );
+
+        // Result verification
+
+        // Fixture teardown
+    }
+
+    @Test
     public void shouldCreateLocalTimeFromSecondOfDay() {
         // Fixture setup
         int secondOfDay = 45045; // 12:30:45
@@ -107,7 +139,7 @@ public class LocalTimeTest {
     
     // exceptions
     @Test
-    public void shouldNotCreateLocalTimeWithInvalidHour() {
+    public void shouldNotCreateLocalTimeWithInvalidHoursValue24() {
         // Fixture setup
         int hour = 24;
         int minute = 0;
@@ -125,7 +157,7 @@ public class LocalTimeTest {
     }
 
     @Test
-    public void shouldNotCreateLocalTimeWithInvalidMinute() {
+    public void shouldNotCreateLocalTimeWithInvalidMinutesValue60() {
         // Fixture setup
         int hour = 0;
         int minute = 60;
@@ -143,7 +175,7 @@ public class LocalTimeTest {
     }
 
     @Test
-    public void shouldNotCreateLocalTimeWithInvalidSecond() {
+    public void shouldNotCreateLocalTimeWithInvalidSecondsValue60() {
         // Fixture setup
         int hour = 0;
         int minute = 0;
@@ -161,39 +193,7 @@ public class LocalTimeTest {
     }
 
     @Test
-    public void shouldNotCreateLocalTimeFromParseWithInvalidTime() {
-        // Fixture setup
-        String time = "24:00:00";
-
-        // Exercise SUT
-        assertThrows(
-                DateTimeException.class,
-                () -> LocalTime.parse(time)
-        );
-
-        // Result verification
-
-        // Fixture teardown
-    }
-
-    @Test
-    public void shouldNotCreateLocalTimeFromParseWithInvalidFormat() {
-        // Fixture setup
-        String time = "12-30-45";
-
-        // Exercise SUT
-        assertThrows(
-                DateTimeException.class,
-                () -> LocalTime.parse(time)
-        );
-
-        // Result verification
-
-        // Fixture teardown
-    }
-
-    @Test
-    public void shouldNotCreateLocalTimeFromSecondOfDayWithInvalidSecond() {
+    public void shouldNotCreateLocalTimeFromSecondOfDayWithInvalidSecondsValue86400() {
         // Fixture setup
         int secondOfDay = 86400; // 24:00:00
         
@@ -204,6 +204,21 @@ public class LocalTimeTest {
         );
 
         // Result verification
+
+        // Fixture teardown
+    }
+
+    @Test
+    public void shouldSumHoursAndMinutes() {
+        // Fixture setup
+        LocalTime hour1 = LocalTime.of(12, 15);
+        LocalTime hour2 = LocalTime.of(13, 12);
+
+        // Exercise SUT
+        LocalTime sum = hour1.plusHours(hour2.getHour()).plusMinutes(hour2.getMinute());
+
+        // Result verification
+        assertEquals(LocalTime.of(1, 27), sum);
 
         // Fixture teardown
     }
