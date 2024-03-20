@@ -29,7 +29,7 @@ public class LocalDateTest {
     }
 
     @Test
-    public void shouldNotCreateInvalidLocalDate() {
+    public void shouldNotCreateInvalidLocalDateFebuary30() {
         // Fixture setup
         
         // Exercise SUT
@@ -92,7 +92,7 @@ public class LocalDateTest {
     }
 
     @Test
-    public void shouldNotCreateInvalidDateFromParse() {
+    public void shouldNotCreateInvalidDateFromParseFebuary30() {
         // Fixture setup
         
         // Exercise SUT
