@@ -4,9 +4,7 @@ public class BorrowerName {
     private String firstName;
     private String lastName;
 
-    public BorrowerName(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public BorrowerName() {
     }
 
     public String getFullName() {
